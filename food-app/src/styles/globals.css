@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-action {
+  @apply bg-lime-900 text-white px-4 py-2 rounded-sm hover:bg-lime-700
+}

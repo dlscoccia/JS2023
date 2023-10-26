@@ -1,0 +1,28 @@
+<form (ngSubmit)="onRegister()" #form="ngForm">
+  <div class="input-group">
+    <label for="name">Nombre</label>
+    <input type="text" id="name" [(ngModel)]="register.name" required="" name="name">
+    <p>Mensaje de error</p>
+</div>
+  <div class="input-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" [(ngModel)]="register.email" required="" name="email">
+    <p>Mensaje de error</p>
+</div>
+  <div class="input-group">
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" [(ngModel)]="register.password" required="" name="password">
+    <p>Mensaje de error</p>
+</div>
+<button type="submit" [disabled]="form.invalid">Registrar</button>
+</form>
+<input type="text" [(ngModel)]="name" required #nameInput2="ngModel"/>
+<hr/>
+
+<div class="products--grid">
+  <div *ngFor="let producto of productos">
+    <img [src]="producto.image" alt="image">
+    <h2>{{producto.price}}</h2>
+    <p>{{producto.name}}</p>
+  </div>
+</div>
