@@ -1,5 +1,5 @@
 export default {
-    jwtSecret: process.env.JWT_SECRET || 'fonziSecret',
+    jwtSecret: process.env.JWT_SECRET || 'secret',
     URI:
         process.env.MONGODB_URI ||
         '',
