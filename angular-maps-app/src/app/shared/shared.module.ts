@@ -6,12 +6,16 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { SearchBoxComponent } from './components/shared-box/shared-box.component';
+import { LoaderSpinnerComponent } from './components/loader-spinner/loader-spinner.component';
 
 @NgModule({
   declarations: [
     AboutPageComponent,
     ContactPageComponent,
     HomePageComponent,
+    LoaderSpinnerComponent,
+    SearchBoxComponent,
     SidebarComponent,
   ],
   imports: [CommonModule, RouterModule],
@@ -19,6 +23,8 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
     AboutPageComponent,
     ContactPageComponent,
     HomePageComponent,
+    LoaderSpinnerComponent,
+    SearchBoxComponent,
     SidebarComponent,
   ],
 })
