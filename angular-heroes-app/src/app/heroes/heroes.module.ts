@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { CommonModule } from '@angular/common';
 import { HeroesRoutingModule } from './heroes-routing.module';
+import { MaterialModule } from '../material/material.module';
+
 import { HeroPageComponent } from './pages/hero-page/hero-page.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { NewPageComponent } from './pages/new-page/new-page.component';
 import { SearchPagePageComponent } from './pages/search-page/search-page-page.component';
+import { CardComponent } from './components/card/card.component';
+import { heroImagePipe } from './pipes/hero-image.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { SearchPagePageComponent } from './pages/search-page/search-page-page.co
     ListPageComponent,
     NewPageComponent,
     SearchPagePageComponent,
+    CardComponent,
+
+    // Pipes
+    heroImagePipe,
   ],
-  imports: [CommonModule, HeroesRoutingModule],
+  imports: [CommonModule, HeroesRoutingModule, MaterialModule],
 })
 export class HeroesModule {}
