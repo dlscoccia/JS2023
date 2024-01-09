@@ -1,0 +1,10 @@
+<h2>Counter: {{ counter() }}</h2>
+<hr />
+<h2>Square counter: {{ sqaureCounter() }}</h2>
+<hr />
+
+<button class="btn btn-outline-primary" (click)="increasedBy(+1)">+1</button>
+&nbsp;
+<button class="btn btn-outline-primary" (click)="increasedBy(-1)">-1</button>
+&nbsp;
+<button class="btn btn-outline-primary" (click)="counter.set(0)">Reset</button>
