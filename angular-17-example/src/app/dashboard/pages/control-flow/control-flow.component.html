@@ -1,0 +1,55 @@
+<app-title title="Control Flow" />
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-3xl text-blue-800">{{ "@for" }}</h2>
+    <h2 class="text-2xl font-bold mb-5">IF: {{ showContent() }}</h2>
+
+    <button
+      (click)="toggleContent()"
+      class="bg-blue-600 text-gray-50 rounded-md p-2"
+    >
+      Toggle
+    </button>
+    @if (showContent()) {
+
+    <p class="text-xl text-blue-800 mt-2">Hello from if</p>
+    } @else {
+    <p class="text-xl text-green-800 mt-2">Hello from else</p>
+    }
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-3xl text-blue-800">{{ "@switch" }}</h2>
+
+    @switch (grade()) { @case ('A') {
+    <p>Alto: {{ grade() }}</p>
+
+    } @case ('B') {
+    <p>Medio: {{ grade() }}</p>
+
+    } @case ('C') {
+    <p>Bajo: {{ grade() }}</p>
+
+    } @default {
+    <p>Sin calificación</p>
+    } }
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-3xl text-blue-800">{{ "@for" }}</h2>
+    <ul>
+      @for (framework of frameworks(); track frameworks; let i = $index) {
+      <li>{{ i }} - {{ framework }}</li>
+      }
+    </ul>
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <ul>
+      @for (framework of frameworks2(); track $index) {
+      <li>{{ framework }}</li>
+      } @empty {
+      <p>No hay elementos a mostrar</p>
+      }
+    </ul>
+  </div>
+</section>
