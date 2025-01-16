@@ -21,8 +21,6 @@ const pokemonsSlice = createSlice({
         [key: string]: SimplePokemon
       }>
     ) => {
-      console.log('pay', action.payload)
-
       state.favorites = action.payload
     },
 
