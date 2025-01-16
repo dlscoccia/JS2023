@@ -1,27 +1,44 @@
 'use client'
-import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/store'
+import {
+  addOne,
+  initCounterState,
+  substractOne,
+} from '@/store/counter/counterSlice'
+import { useEffect } from 'react'
 
-interface Props {
-  value?: number
+interface CounterResponse {
+  count: number
 }
 
-export const CartCounter = ({ value = 0 }: Props) => {
-  const [counter, setCounter] = useState<number>(value)
+const getApiCounter = async (): Promise<CounterResponse> => {
+  const data = await fetch('http://localhost:3000/api/counter').then((resp) =>
+    resp.json()
+  )
 
-  const handleCounter = (value: number) =>
-    setCounter((prevValue) => prevValue + value)
+  return data
+}
+
+export const CartCounter = () => {
+  const count = useAppSelector((state) => state.counter.count)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    getApiCounter().then(({ count }) => dispatch(initCounterState(count)))
+  }, [dispatch])
+
   return (
     <>
-      <span className='text-9xl'>{counter}</span>
-      <div className='flex'>
+      <span className='text-9xl'>{count}</span>
+      <div className='flex mt-4'>
         <button
-          onClick={() => handleCounter(1)}
+          onClick={() => dispatch(addOne())}
           className='flex items-center justify-center p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-600 transition-all w-[100px] mr-2'
         >
           +1
         </button>
         <button
-          onClick={() => handleCounter(-1)}
+          onClick={() => dispatch(substractOne())}
           className='flex items-center justify-center p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-600 transition-all w-[100px]'
         >
           -1

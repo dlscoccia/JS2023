@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   description: 'A simple counter',
 }
 
-export default function CounterPage() {
+export default async function CounterPage() {
   return (
     <div className='flex flex-col items-center justify-center w-full h-full'>
-      <span>Productos en el carrito</span>
+      <span>Products on shopping cart</span>
       <CartCounter />
     </div>
   )

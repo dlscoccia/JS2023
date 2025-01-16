@@ -1,33 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import {
-  IoBrowsersOutline,
-  IoCalculator,
-  IoFootball,
-  IoLogoReact,
-} from 'react-icons/io5'
+import { IoLogoReact } from 'react-icons/io5'
 import { SidebarMenuItem } from './SidebarMenuItem'
-
-const menuItems = [
-  {
-    path: '/dashboard/main',
-    icon: <IoBrowsersOutline size={40} />,
-    title: 'Dashboard',
-    subTitle: 'Visualization',
-  },
-  {
-    path: '/dashboard/counter',
-    icon: <IoCalculator size={40} />,
-    title: 'Counter',
-    subTitle: 'Counter Client Side',
-  },
-  {
-    path: '/dashboard/pokemons',
-    icon: <IoFootball size={40} />,
-    title: 'Pokemons',
-    subTitle: 'SSG',
-  },
-]
+import { routes } from '@/constants/routes'
 
 export const Sidebar = () => {
   return (
@@ -65,7 +40,7 @@ export const Sidebar = () => {
       </div>
 
       <div id='nav' className='w-full px-6'>
-        {menuItems.map((item) => (
+        {routes.map((item) => (
           <SidebarMenuItem key={item.path} {...item} />
         ))}
       </div>
