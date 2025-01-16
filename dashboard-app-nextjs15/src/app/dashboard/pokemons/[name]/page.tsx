@@ -1,16 +1,19 @@
-import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { IoArrowBackOutline } from 'react-icons/io5'
-import { getPokemonById } from '@/utils'
+import { SimplePokemon } from '@/interfaces'
+import { getPokemonByName, getPokemonsByLimit } from '@/utils'
 
 interface Props {
-  readonly params: Promise<{ id: string }>
+  readonly params: Promise<{ name: string }>
 }
 
 export async function generateStaticParams() {
-  const staticIdParams = Array.from({ length: 151 }).map((_, i) => ({
-    id: `${i + 1}`,
+  const getPokemonNames = await getPokemonsByLimit(151)
+
+  const staticIdParams = getPokemonNames.map((pokemon: SimplePokemon) => ({
+    name: pokemon.name,
   }))
 
   return staticIdParams
@@ -18,8 +21,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const { id } = await params
-    const { name } = await getPokemonById(id)
+    const { name } = await params
+    const { id } = await getPokemonByName(name)
 
     return {
       title: `#${id} - ${name}`,
@@ -34,9 +37,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PokemonPage({ params }: Props) {
-  const { id } = await params
+  const { name } = await params
 
-  const pokemon = await getPokemonById(id)
+  const pokemon = await getPokemonByName(name)
 
   return (
     <div className='flex mt-5 flex-col items-center text-slate-800'>
