@@ -17,7 +17,7 @@ const getTodo = async (id: string): Promise<Todo | null> => {
   return todo
 }
 
-const errorResponse = (error, statusCode: number) =>
+const errorResponse = (error: string | Error, statusCode: number) =>
   NextResponse.json(
     {
       ok: false,
@@ -70,6 +70,6 @@ export async function PUT(request: NextRequest, { params }: Segments) {
       updatedTodo,
     })
   } catch (error) {
-    return errorResponse(error, 400)
+    return errorResponse(error as Error, 400)
   }
 }
