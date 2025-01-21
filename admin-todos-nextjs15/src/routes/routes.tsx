@@ -4,6 +4,7 @@ import {
     IoCheckboxOutline,
     IoCode,
     IoListOutline,
+    IoPersonOutline,
 } from 'react-icons/io5';
 
 export const menuItems = [
@@ -31,5 +32,10 @@ export const menuItems = [
         title: 'Products',
         icon: <IoCartOutline size={30} />,
         href: '/dashboard/products',
+    },
+    {
+        title: 'Profile',
+        icon: <IoPersonOutline size={30} />,
+        href: '/dashboard/profile',
     },
 ];
