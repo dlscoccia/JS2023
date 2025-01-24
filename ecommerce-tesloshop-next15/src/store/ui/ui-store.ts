@@ -1,15 +1,17 @@
 import { create } from 'zustand';
 
 interface State {
-    isSidebarOpen: boolean;
+  isSideMenuOpen: boolean;
 
-    openSidebar: () => void;
-    closeSidebar: () => void;
+  openSideMenu: () => void;
+  closeSideMenu: () => void;
+
 }
 
-export const useUIStore = create<State>()((set) => ({
-    isSidebarOpen: false,
 
-    openSidebar: () => set({ isSidebarOpen: true }),
-    closeSidebar: () => set({ isSidebarOpen: false }),
+export const useUIStore = create<State>()((set) => ({
+  isSideMenuOpen: false,
+
+  openSideMenu: () => set({ isSideMenuOpen: true }),
+  closeSideMenu: () => set({ isSideMenuOpen: false }),
 }));
