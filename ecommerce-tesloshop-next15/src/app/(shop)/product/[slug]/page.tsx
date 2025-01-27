@@ -11,6 +11,7 @@ import {
 } from '@/components';
 import { getProductBySlug } from '@/actions/products/get-product-by-slug';
 import { Metadata } from 'next';
+import { AddToCart } from './ui/AddToCart';
 
 interface Props {
     params: {
@@ -67,13 +68,7 @@ export default async function ProductBySlugPage({ params }: Props) {
 
                 <StockLabel slug={slug} />
 
-                <SizeSelector
-                    selectedSize={product.sizes[1]}
-                    availableSizes={product.sizes}
-                />
-                <QuantitySelector quantity={2} />
-
-                <button className='btn-primary my-5'>Agregar al carrito</button>
+                <AddToCart product={product} />
 
                 <h3 className='font-bold text-sm'>Descripción</h3>
                 <p className='font-light'>{product.description}</p>

@@ -22,16 +22,14 @@ export const StockLabel = ({ slug }: Props) => {
     };
 
     return (
-        <>
-            <h1
-                className={` ${titleFont.className} antialiased font-semibold text-md`}>
-                Stock:{' '}
-                {isLoading ? (
-                    <span className={`w-10 animate-pulse `}>Cargando...</span>
-                ) : (
-                    stock
-                )}
-            </h1>
-        </>
+        <h1
+            className={` ${titleFont.className} antialiased font-semibold text-md`}>
+            Stock:{' '}
+            {isLoading ? (
+                <span className={`w-10 animate-pulse `}>Cargando...</span>
+            ) : (
+                stock
+            )}
+        </h1>
     );
 };
