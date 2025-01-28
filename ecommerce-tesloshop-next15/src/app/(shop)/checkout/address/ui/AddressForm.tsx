@@ -1,6 +1,10 @@
 'use client';
-import clsx from 'clsx';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import clsx from 'clsx';
+
+import type { Country } from '@/interfaces';
+import { useAddressStore } from '@/store';
 
 type FormInputs = {
     firstName: string;
@@ -14,11 +18,19 @@ type FormInputs = {
     rememberAddress: boolean;
 };
 
-export const AddressForm = () => {
+interface Props {
+    countries: Country[];
+}
+
+export const AddressForm = ({ countries }: Props) => {
+    const setAddress = useAddressStore((state) => state.setAddress);
+    const address = useAddressStore((state) => state.address);
+
     const {
         handleSubmit,
         register,
         formState: { isValid },
+        reset,
     } = useForm<FormInputs>({
         defaultValues: {
             // TODO: leer de base de datos
@@ -26,8 +38,12 @@ export const AddressForm = () => {
     });
 
     const onSubmit = (data: FormInputs) => {
-        console.log({ data });
+        if (address.firstName) setAddress(data);
     };
+
+    useEffect(() => {
+        reset(address);
+    }, []);
 
     return (
         <form
@@ -93,7 +109,11 @@ export const AddressForm = () => {
                     className='p-2 border rounded-md bg-gray-200'
                     {...register('country', { required: true })}>
                     <option value=''>[ Seleccione ]</option>
-                    <option value='CRI'>Costa Rica</option>
+                    {countries.map(({ id, name }) => (
+                        <option key={id} value={id}>
+                            {name}
+                        </option>
+                    ))}
                 </select>
             </div>
 
