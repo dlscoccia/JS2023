@@ -1,39 +1,52 @@
-'use client';
-import { useCartStore } from '@/store';
-import { CurrrencyFormatter } from '@/utils';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+"use client";
+
+import { useCartStore } from "@/store";
+import { currencyFormat } from "@/utils";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
 
 export const OrderSummary = () => {
-    const { subTotal, tax, total, itemsInCart } = useCartStore((state) =>
-        state.getSummaryInformation()
-    );
 
-    const [loaded, setLoaded] = useState(false);
+  const router = useRouter();
 
-    useEffect(() => {
-        setLoaded(true);
-    }, []);
+  const [loaded, setLoaded] = useState(false);
+  const { itemsInCart, subTotal, tax, total } = useCartStore((state) =>
+    state.getSummaryInformation()
+  );
 
-    if (!loaded) return <p>Cargando...</p>;
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
-    return (
-        <div className='grid grid-cols-2'>
-            <span>No. Productos</span>
-            <span className='text-right'>
-                {itemsInCart} artículo{itemsInCart > 1 ? 's' : ''}
-            </span>
 
-            <span>Subtotal</span>
-            <span className='text-right'>{CurrrencyFormatter(subTotal)}</span>
+  useEffect(() => {
 
-            <span>Impuestos (15%)</span>
-            <span className='text-right'>{CurrrencyFormatter(tax)}</span>
+    if ( itemsInCart === 0 && loaded === true )   {
+      router.replace('/empty')
+    }
 
-            <span className='mt-5 text-2xl'>Total:</span>
-            <span className='mt-5 text-2xl text-right'>
-                {CurrrencyFormatter(total)}
-            </span>
-        </div>
-    );
+
+  },[ itemsInCart, loaded ])
+
+
+
+  if (!loaded) return <p>Loading...</p>;
+
+  return (
+    <div className="grid grid-cols-2">
+      <span>No. Productos</span>
+      <span className="text-right">
+        {itemsInCart === 1 ? "1 artículo" : `${itemsInCart} artículos`}
+      </span>
+
+      <span>Subtotal</span>
+      <span className="text-right">{currencyFormat(subTotal)}</span>
+
+      <span>Impuestos (15%)</span>
+      <span className="text-right">{currencyFormat(tax)}</span>
+
+      <span className="mt-5 text-2xl">Total:</span>
+      <span className="mt-5 text-2xl text-right">{currencyFormat(total)}</span>
+    </div>
+  );
 };
