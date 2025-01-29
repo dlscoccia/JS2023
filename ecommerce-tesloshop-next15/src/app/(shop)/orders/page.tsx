@@ -1,11 +1,10 @@
 export const revalidate = 0;
 
-import { getOrdersByUsers } from '@/actions';
-import { Title } from '@/components';
-
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
+import { getOrdersByUsers } from '@/actions';
+import { Title } from '@/components';
 
 export default async function OrdersPage() {
     const { ok, orders } = await getOrdersByUsers();
