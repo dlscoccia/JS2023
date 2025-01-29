@@ -12,6 +12,8 @@ export * from './product/quantity-selector/QuantitySelector';
 export * from './product/size-selector/SizeSelector';
 export * from './product/stock-label/StockLabel';
 
+export * from './orders/OrderStatus';
+
 export * from './ui/footer/Footer';
 export * from './ui/not-found/PageNotFound';
 export * from './ui/pagination/Pagination';
